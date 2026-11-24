@@ -58,6 +58,12 @@ const mongodbConnect = async () => {
         const bookingCollection = db.collection('bookings')
 
         // get
+        app.get('/featured', async (req, res) => {
+            const result = await destinationCollection.find().limit(4).toArray()
+            res.send(result)
+        })
+
+
         app.get('/destination', async (req, res) => {
             const result = await destinationCollection.find().toArray()
             res.send(result);
